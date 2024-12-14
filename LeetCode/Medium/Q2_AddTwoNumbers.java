@@ -27,6 +27,27 @@ public class Q2_AddTwoNumbers {
       printLinkedList(addTwoNumber(l1_1, l1_2));
       printLinkedListInReverse(addTwoNumber(l1_1, l1_2));
    }
+   
+   public static ListNode addTwoNumber(ListNode l1, ListNode l2) {
+      ListNode dummyHead = new ListNode(0);
+      ListNode current = dummyHead;
+      int carry = 0;
+
+      while (l1 != null || l2 != null || carry != 0) {
+         int x = (l1 != null) ? l1.val : 0;
+         int y = (l2 != null) ? l2.val : 0;
+         
+         int sum = carry + x + y;
+         carry = sum / 10;
+
+         current.next = new ListNode(sum % 10);
+         current = current.next;
+
+         if (l1 != null) l1 = l1.next; 
+         if (l2 != null) l2 = l2.next; 
+      }
+      return dummyHead.next;
+   }
 
    public static ListNode createLinkedList(                                                                                                                                                                                                 int[] values) {
       ListNode dummyHead = new ListNode(0); // Temporary dummy node
@@ -72,24 +93,4 @@ public class Q2_AddTwoNumbers {
       System.out.println();
    }
 
-   public static ListNode addTwoNumber(ListNode l1, ListNode l2) {
-      ListNode dummyHead = new ListNode(0);
-      ListNode current = dummyHead;
-      int carry = 0;
-
-      while (l1 != null || l2 != null || carry != 0) {
-         int x = (l1 != null) ? l1.val : 0;
-         int y = (l2 != null) ? l2.val : 0;
-         
-         int sum = carry + x + y;
-         carry = sum / 10;
-
-         current.next = new ListNode(sum % 10);
-         current = current.next;
-
-         if (l1 != null) l1 = l1.next; 
-         if (l2 != null) l2 = l2.next; 
-      }
-      return dummyHead.next;
-   }
 }
